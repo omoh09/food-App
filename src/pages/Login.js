@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import login from '../components/assets/login.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JSXDiv = styled.div`
 display:flex;
@@ -34,7 +36,7 @@ const JSXInnerdiv = styled.div`
     border: 1px solid blue;
     border-radius: 5px;
   }
-  input[type=submit]{
+  button{
     background: #00302E;
     color: #FBDDBB;
     border-radius: 5px;
@@ -44,6 +46,7 @@ const JSXInnerdiv = styled.div`
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
+    height:50px;
     text-align: center;
   }
   .row{
@@ -66,16 +69,49 @@ const JSXInnerdiv = styled.div`
   }
 `
 
-function Login() {
+const  Login = () => {
+
+  const [formData, setform] = useState({
+    email:'',
+    password:'',
+  })
+
+  const handleChange = (e) => {
+   setform({
+    ...formData,
+    [e.target.name]:e.target.value
+   })
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    let data = JSON.parse(sessionStorage.getItem('user'))
+    // console.log(formData)
+    // console.log(data)
+    if (formData?.email == data?.email && formData?.password == data?.password)  {
+      // console.log('TRUE')
+      toast.success('Login Successful')
+      setInterval(() => {
+        window.location = '/dashboard'
+      }, 2000)
+    } else {
+      toast.error('Invalid Credentials')
+      // console.log('FALSE')
+    }
+    
+  }
+
   return (
     <JSXDiv>
+      <ToastContainer />
         <img src={login} alt='Login logo' />
         <JSXInnerdiv>
           <h2>Welcome Back</h2>
-          <form method='' action=''>
-            <div className=''><input type='email' name='email' placeholder='Your Email address' /></div>
-            <div className=''><input type='password' name='password' placeholder='Your Password' /></div>
-            <div className=''><input type='submit' name='login' value='LOGIN' /></div>
+          <form onSubmit={handleSubmit}>
+            <div className=''><input type='email' name='email' onChange={handleChange} placeholder='Your Email address' /></div>
+            <div className=''><input type='password' name='password' onChange={handleChange} placeholder='Your Password' /></div>
+            {/* <div className=''><input type='submit' name='login' value='LOGIN' /></div> */}
+            <div className=''><button>LOGIN</button></div>
           </form>
           <div className='row'>
             <div className='col-1'>

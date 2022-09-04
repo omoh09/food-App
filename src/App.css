@@ -110,6 +110,12 @@
   /* background-color: brown; */
 }
 
+/* @media screen and (max-width: 700px) { 
+  .section_1_right img {
+    display: inline-block;
+  }
+} */
+
 /* HOME PAGE SECTION 2 */
 .section_2{
   margin-top: 150px;
@@ -293,3 +299,129 @@
     top: -5px;
   }
 } */
+
+
+
+/* Toggle Styles */
+
+
+#content {
+  /* text-align: left; */
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 350px;
+  /* background-color: #B3B3B3; */
+  height: 500px;
+  /* text-align: center; */
+}
+
+ .content_1{
+  margin: 0;
+  width: 100%;
+  /* background-color: #FBDDBB; */
+  display:flex;
+  /* margin-left: -150px; */
+  
+ }
+.content_1_left{
+  width: 70%;
+  text-align: left;
+  float: left;
+  font-family: 'Poppins';
+  font-style: normal;
+}
+ .content_1_right{
+  /* background-color: #EFEFEF; */
+  float: right;
+  width: 30%;
+  padding-top: 30px;
+ }
+
+ .content_1_right img{
+  float: right;
+ }
+
+/* Sidebar Styles */
+
+#sidebar {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 320px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #FBFBFB;
+  
+  font-family: 'Poppins';
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar header {
+  display: flex;
+  padding: 50px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 33px;
+  height: 50px;
+  /* identical to box height */
+  letter-spacing: 0.05em;
+  color: #00302E;
+}
+
+#sidebar ul{
+  width: 100%;
+  padding: 0;
+}
+
+#sidebar ul li{
+  line-height: 50px;
+  text-align: left;
+  list-style: none;
+}
+
+#sidebar header a {
+  color: #00302E;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+/* #sidebar header a:hover {
+  color: #fff;
+} */
+
+#sidebar .nav a{
+  /* width: 100%; */
+  /* background: none; */
+  /* color: #fff; */
+  display: block;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  width: 267px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #707070;
+  padding-left: 15px;
+}
+
+#sidebar .nav a:hover{
+  background: none;
+  width: 267px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #EFEFEF;
+  border-radius: 12px;
+  line-height: 50px;
+  
+}
+
+#sidebar .nav .zmdi{
+  padding-right: 20px;
+}

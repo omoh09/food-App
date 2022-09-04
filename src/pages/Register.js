@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import register from '../components/assets/register.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JSXDiv = styled.div`
 display:flex;
@@ -34,7 +36,7 @@ const JSXInnerdiv = styled.div`
     border: 1px solid blue;
     border-radius: 5px;
   }
-  input[type=submit]{
+ button{
     background: #00302E;
     color: #FBDDBB;
     border-radius: 5px;
@@ -44,6 +46,7 @@ const JSXInnerdiv = styled.div`
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
+    height:50px;
     text-align: center;
   }
   .row{
@@ -61,17 +64,46 @@ const JSXInnerdiv = styled.div`
   }
 `
 
-function Register() {
+const Register = () => {
+
+  //Initialize the form data
+  const [form, setForm] = useState({
+    fullname:'',
+    email:'',
+    password:'',
+  })
+
+  //Captaure the data
+  const handleChange = (e) => {
+    setForm({
+      ...form, //spread operator
+      [e.target.name]:e.target.value
+    })
+  }
+
+  //store on sessionStrorage
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // console.log({form})
+    sessionStorage.setItem('user', JSON.stringify(form))
+    toast.success('Registration Successful')
+    setInterval(() => {
+      window.location = '/login'
+    }, 2000);
+  }
+
   return (
     <JSXDiv>
+      <ToastContainer />
         <img src={register} alt='Register logo' />
         <JSXInnerdiv>
           <h2>Welcome to Lilies!</h2>
-          <form method='' action=''>
-            <div className=''><input type='text' name='name' placeholder='Your First Name' /></div>
-            <div className=''><input type='email' name='email' placeholder='Your Email address' /></div>
-            <div className=''><input type='password' name='password' placeholder='Your Password' /></div>
-            <div className=''><input type='submit' name='login' value='SIGN UP' /></div>
+          <form onSubmit={handleSubmit}>
+            <div><input type='text' onChange={handleChange} placeholder='Your First Name' name='fullname'/></div>
+            <div><input type='email' name='email' onChange={handleChange} placeholder='Your Email address' /></div>
+            <div><input type='password' name='password' onChange={handleChange}placeholder='Your Password' /></div>
+            {/* <div className=''><input type='submit' name='login' value='SIGN UP' /></div> */}
+            <div><button>SIGN UP</button></div>
           </form>
           <div className='row'>
             Already have an account. <Link to='/login'>LOGIN</Link>
