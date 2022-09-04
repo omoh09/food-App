@@ -24,9 +24,9 @@ const JSXDiv = styled.div`
 
 
 const Dashboard = () => {
-    // let user = JSON.parse(sessionStorage.getItem('user'))
-    // let name = user?.name
-    // let email = user?.email
+    let user = JSON.parse(sessionStorage.getItem('user'))
+    let name = user?.name
+    let email = user?.email
 
     const arrayData = [
       {'name':'Stir fry Pasta', 'desc':'Stir fry pasta yada yada yada because of Sesan', 'image':(food1)},
